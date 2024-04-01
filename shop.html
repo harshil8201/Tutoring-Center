@@ -21,6 +21,18 @@
 		<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 		<link href="css/tiny-slider.css" rel="stylesheet">
 		<link href="css/style.css" rel="stylesheet">
+		<style>
+			.notification {
+				position: fixed;
+				bottom: 20px;
+				right: 20px;
+				background-color: #333;
+				color: #fff;
+				padding: 10px 20px;
+				border-radius: 5px;
+				display: none;
+			  }
+		</style>
 		<title>Furni Free Bootstrap 5 Template for Furniture and Interior Design Websites by Untree.co </title>
 	</head>
 
@@ -187,7 +199,7 @@
 			</div>
 		</footer>
 		<!-- End Footer Section -->	
-
+		<div id="notification" class="notification"></div>
 
 		<script src="js/bootstrap.bundle.min.js"></script>
 		<script src="js/tiny-slider.js"></script>
@@ -199,14 +211,14 @@
 		$(document).ready(function() {
 			// Define an array to hold product data
 			var products = [
-				{ name: "Nordic Chair", price: 50.00, img: "images/java.png" },
-				{ name: "Kruzo Aero Chair", price: 78.00, img: "images/JS.png" },
-				{ name: "Ergonomic Chair", price: 43.00, img: "images/node.png" },
-				{ name: "Ergonomic Chair", price: 71.00, img: "images/php.png" },
-				{ name: "Ergonomic Chair", price: 50.00, img: "images/React.png" },
-				{ name: "Ergonomic Chair", price: 55.00, img: "images/html.png" },
-				{ name: "Ergonomic Chair", price: 70.00, img: "images/cHash.png" },
-				{ name: "Ergonomic Chair", price: 43.00, img: "images/CSS.png" },
+				{proid:1, name: "Nordic Chair", price: 50.00, img: "images/java.png" },
+				{proid:2, name: "Kruzo Aero Chair", price: 78.00, img: "images/JS.png" },
+				{proid:3, name: "Ergonomic Chair", price: 43.00, img: "images/node.png" },
+				{proid:4, name: "Ergonomic Chair", price: 71.00, img: "images/php.png" },
+				{proid:5, name: "Ergonomic Chair", price: 50.00, img: "images/React.png" },
+				{proid:6, name: "Ergonomic Chair", price: 55.00, img: "images/html.png" },
+				{proid:7, name: "Ergonomic Chair", price: 70.00, img: "images/cHash.png" },
+				{proid:8, name: "Ergonomic Chair", price: 43.00, img: "images/CSS.png" },
 				// Add more products here if needed
 			];
 		
@@ -221,16 +233,16 @@
 				// Loop through the products array and generate HTML for each product
 				products.forEach(function(product) {
 					var productHTML =
-						"<div class='col-12 col-md-4 col-lg-3 mb-5 mb-md-0'>" +
-						"<a class='product-item' href='#' data-name='" + product.name + "' data-price='" + product.price.toFixed(2) + "' data-img='" + product.img + "'>" +
-						"<img src='" + product.img + "' class='img-fluid product-thumbnail'>" +
-						"<h3 class='product-title'>" + product.name + "</h3>" +
-						"<strong class='product-price'>$" + product.price.toFixed(2) + "</strong>" +
-						"<span class='icon-cross'>" +
-						"<img src='images/cross.svg' class='img-fluid'>" +
-						"</span>" +
-						"</a>" +
-						"</div>";
+					"<div class='col-12 col-md-4 col-lg-3 mb-5 mb-md-0'>" +
+					"<a class='product-item' data-proid='" + product.proid + "'  data-name='" + product.name + "' data-price='" + product.price.toFixed(2) + "' data-img='" + product.img + "'>" +
+					"<img src='" + product.img + "' class='img-fluid product-thumbnail'>" +
+					"<h3 class='product-title'>" + product.name + "</h3>" +
+					"<strong class='product-price'>$" + product.price.toFixed(2) + "</strong>" +
+					"<span class='icon-cross'>" +
+					"<img src='images/cross.svg' class='img-fluid'>" +
+					"</span>" +
+					"</a>" +
+					"</div>";
 		
 					// Append the product HTML to the product list div
 					productListDiv.append(productHTML);
@@ -239,25 +251,56 @@
 		
 			// Call the populateProductList function to initially populate the product list
 			populateProductList();
-		});
-		$(document).ready(function () {
-			var productList = []; // JavaScript list to store product data
-			console.log(productList);
-			// Click event handler for product links
-			$(".product-item").click(function (event) {
-				event.preventDefault(); // Prevent the default action of the link
-	
-				var product = $(this);
-				var name = product.data("name");
-				var price = parseFloat(product.data("price"));
-				var img = product.data("img");
-	
-				// Add product data to the JavaScript list
-				productList.push({ name: name, price: price, img: img });
-	
-				console.log("Product added to list:", productList);
-				localStorage.setItem("productList", JSON.stringify(productList));
+
+			// Function to show notification when a product is added to the cart
+			function showNotification(message) {
+				var notificationDiv = $("#notification");
+				notificationDiv.text(message);
+				notificationDiv.fadeIn().delay(2000).fadeOut();
+			}
+
+			function isProductInCart(productId) {
+				var productList = JSON.parse(localStorage.getItem("productList"));
+				for (var i = 0; i < productList.length; i++) {
+					if (String(productList[i].id) === String(productId)) {
+						return true; // Product with the same ID found in the cart
+					}
+				}
+				return false; // Product with the same ID not found in the cart
+			}
+			// Event listener for clicking on product-item
+			// Event listener for clicking on product-item
+			$(".product-item").click(function(e) {
+				e.preventDefault();
+				debugger;
+				var productId = $(this).data('proid');
+				var productName = $(this).data('name');
+				// Check if the product is already in the cart
+				var productListcart = JSON.parse(localStorage.getItem("productList")) || [];
+				if(productListcart && productListcart.length > 0)
+				var alreadyInCart = isProductInCart(productId);
+		
+				if (alreadyInCart) {
+					debugger;
+					showNotification(productName + " is already in the cart");
+				} else {
+					// Add the product to the cart
+					debugger;
+					productListcart.push({
+						id: $(this).data('proid'),
+						name: $(this).data('name'),
+						price: parseFloat($(this).data('price')),
+						img: $(this).data('img')
+					});
+		
+					// Update the product list in localStorage
+					localStorage.setItem('productList', JSON.stringify(productListcart));
+		
+					// Show success notification
+					showNotification(productName + " added to cart");
+				}
 			});
 		});
+		
 	</script>
 </html>
