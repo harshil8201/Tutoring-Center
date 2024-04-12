@@ -327,6 +327,10 @@
           <div class="col-lg-5">
             <div class="intro-excerpt">
               <h1>Checkout</h1>
+              <div id="welcome-message" style="display: none;">
+                <h1>Welcome, <span id="user-username"></span>!</h1>
+                <!-- <button id="logout-btn" class="btn btn-dark">Logout</button> -->
+            </div>
             </div>
           </div>
           <div class="col-lg-7"></div>
@@ -401,12 +405,17 @@
                         </div>
                       </form>
 
-                      <a href="#" class="forgot_password">Forgot password?</a>
+                      <!-- <a href="#" class="forgot_password">Forgot password?</a> -->
                     </div>
 
                     <!-- Registration Form -->
                     <div class="user_register" style="display: none">
                       <form id="registrationForm">
+
+                        <label>Username</label>
+                        <input type="text" id="userName" name="userName" />
+                        <br />
+
                         <label>Email Address</label>
                         <input type="email" id="email" name="email" />
                         <br />
@@ -1180,6 +1189,7 @@
             login_password: {
               required: true,
             },
+            
           },
           messages: {
             login_useremail: {
@@ -1194,6 +1204,7 @@
             var loginUsername =
               document.getElementById("login_useremail").value;
             var loginPassword = document.getElementById("login_password").value;
+            //var loginUserDisplayname = document.getElementById("login_useremail").value;
 
             // Check if username exists in local storage
             if (localStorage.getItem(loginUsername) !== null) {
@@ -1213,10 +1224,23 @@
               alert("Username not found. Please register first.");
             }
             alert("Login form submitted!");
+            debugger;
+            displayWelcomeMessage(userDetails.userName);
             return false;
           },
         });
 
+        function displayWelcomeMessage(user) {
+          // Hide the login form
+          var welcomeMessage = document.getElementById("welcome-message");
+          var userUsername = document.getElementById("user-username");
+          debugger;
+          loginForm.style.display = "none";
+  
+          // Display the welcome message
+          welcomeMessage.style.display = "block";
+          userUsername.textContent = user;
+      }
         // Registration form validation
         $("#registrationForm").validate({
           rules: {
@@ -1227,6 +1251,9 @@
             password: {
               required: true,
             },
+            userName: {
+              required:true,
+            }
           },
           messages: {
             email: {
@@ -1236,10 +1263,14 @@
             password: {
               required: "Please enter a password",
             },
+            userName:{
+              required: "Please enter a UserName",
+            }
           },
           submitHandler: function (form) {
             var email = $("#email").val();
             var password = $("#password").val();
+            var userName = $("#userName").val();
 
             // Check if the user already exists
             if (localStorage.getItem(email) !== null) {
@@ -1250,7 +1281,7 @@
             }
 
             // Store registration details in local storage
-            var userDetails = { email: email, password: password };
+            var userDetails = { email: email, password: password,  userName: userName};
             localStorage.setItem(email, JSON.stringify(userDetails));
 
             // Handle registration form submission (e.g., redirect)
