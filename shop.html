@@ -82,6 +82,14 @@
 		
 		<div class="product-section">
 			<div class="container">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-6 mb-4">
+							<input type="text" id="search-input" class="form-control" placeholder="Search products...">
+						</div>
+					</div>
+				</div>
+				
 				<div class="row" id="product-list">
 					
 				</div>
@@ -213,17 +221,15 @@
 				{proid:8, name: "CSS", price: 43.00, img: "images/CSS.png" },
 				// Add more products here if needed
 			];
-		
+			
 			// Function to populate the product list div
-			function populateProductList() {
+			function populateProductList(productsToDisplay) {
 				var productListDiv = $("#product-list");
-		
 				// Empty the div before populating it with new data
 				productListDiv.empty();
-	
-		
+				
 				// Loop through the products array and generate HTML for each product
-				products.forEach(function(product) {
+				productsToDisplay.forEach(function(product) {
 					var productHTML =
 					"<div class='col-12 col-md-4 col-lg-3 mb-5 mb-md-0'>" +
 					"<a class='product-item' data-proid='" + product.proid + "'  data-name='" + product.name + "' data-price='" + product.price.toFixed(2) + "' data-img='" + product.img + "'>" +
@@ -235,24 +241,24 @@
 					"</span>" +
 					"</a>" +
 					"</div>";
-		
+					
 					// Append the product HTML to the product list div
 					productListDiv.append(productHTML);
 				});
 			}
-		
+			
 			// Call the populateProductList function to initially populate the product list
-			populateProductList();
-
+			populateProductList(products);
+			
 			// Function to show notification when a product is added to the cart
 			function showNotification(message) {
 				var notificationDiv = $("#notification");
 				notificationDiv.text(message);
 				notificationDiv.fadeIn().delay(2000).fadeOut();
 			}
-
+			
 			function isProductInCart(productId) {
-				var productList = JSON.parse(localStorage.getItem("productList"));
+				var productList = JSON.parse(localStorage.getItem("productList")) || [];
 				for (var i = 0; i < productList.length; i++) {
 					if (String(productList[i].id) === String(productId)) {
 						return true; // Product with the same ID found in the cart
@@ -260,37 +266,42 @@
 				}
 				return false; // Product with the same ID not found in the cart
 			}
+			
 			// Event listener for clicking on product-item
-			// Event listener for clicking on product-item
-			$(".product-item").click(function(e) {
+			$(document).on("click", ".product-item", function(e) {
 				e.preventDefault();
-				debugger;
 				var productId = $(this).data('proid');
 				var productName = $(this).data('name');
 				// Check if the product is already in the cart
-				var productListcart = JSON.parse(localStorage.getItem("productList")) || [];
-				if(productListcart && productListcart.length > 0)
 				var alreadyInCart = isProductInCart(productId);
-		
+				
 				if (alreadyInCart) {
-					debugger;
 					showNotification(productName + " is already in the cart");
 				} else {
 					// Add the product to the cart
-					debugger;
+					var productListcart = JSON.parse(localStorage.getItem("productList")) || [];
 					productListcart.push({
-						id: $(this).data('proid'),
+						id: productId,
 						name: $(this).data('name'),
 						price: parseFloat($(this).data('price')),
 						img: $(this).data('img')
 					});
-		
+					
 					// Update the product list in localStorage
 					localStorage.setItem('productList', JSON.stringify(productListcart));
-		
+					
 					// Show success notification
 					showNotification(productName + " added to cart");
 				}
+			});
+			
+			// Search functionality
+			$("#search-input").on("keyup", function() {
+				var searchTerm = $(this).val().toLowerCase();
+				var filteredProducts = products.filter(function(product) {
+					return product.name.toLowerCase().includes(searchTerm);
+				});
+				populateProductList(filteredProducts);
 			});
 		});
 		

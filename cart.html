@@ -26,54 +26,7 @@
     </title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script>
-      $(document).ready(function () {
-        // Function to increment quantity
-        $(".increase").on("click", function () {
-          var input = $(this)
-            .closest(".quantity-container")
-            .find(".quantity-amount");
-          var newValue = parseInt(input.val()) + 1;
-          input.val(newValue);
-          updateCart($(this));
-        });
-
-        // Function to decrement quantity
-        $(".decrease").on("click", function () {
-          var input = $(this)
-            .closest(".quantity-container")
-            .find(".quantity-amount");
-          var newValue = parseInt(input.val()) - 1;
-          if (newValue < 1) {
-            newValue = 1; // Quantity should not be less than 1
-          }
-          input.val(newValue);
-          updateCart($(this));
-        });
-
-        // Function to update cart
-        function updateCart(element) {
-          var quantity = parseInt(
-            element.closest("tr").find(".quantity-amount").val()
-          );
-          var price = parseFloat(
-            element.closest("tr").find(".product-price").text().replace("$", "")
-          );
-          var total = quantity * price;
-          element
-            .closest("tr")
-            .find(".product-total")
-            .text("$" + total.toFixed(2));
-
-          // Update subtotal
-          var subtotal = 0;
-          $(".product-total").each(function () {
-            subtotal += parseFloat($(this).text().replace("$", ""));
-          });
-          $(".subtotal-value").text("$" + subtotal.toFixed(2));
-        }
-      });
-    </script>
+    
   </head>
 
   <body>
