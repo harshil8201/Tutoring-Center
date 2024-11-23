@@ -26,7 +26,6 @@
     </title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    
   </head>
 
   <body>
@@ -36,7 +35,9 @@
       arial-label="Furni navigation bar"
     >
       <div class="container">
-        <a class="navbar-brand" href="index.html">ProgLearn Hub<span>.</span></a>
+        <a class="navbar-brand" href="index.html"
+          >ProgLearn Hub<span>.</span></a
+        >
 
         <button
           class="navbar-toggler"
@@ -149,8 +150,7 @@
 
         <div class="row">
           <div class="col-md-6">
-            <div class="row mb-5">
-            </div>
+            <div class="row mb-5"></div>
             <div class="row">
               <div class="col-md-12">
                 <label class="text-black h4" for="coupon">Coupon</label>
@@ -373,8 +373,8 @@
     $(document).ready(function () {
       // Retrieve the product list from localStorage
       var productList = JSON.parse(localStorage.getItem("productList"));
-	  localStorage.setItem("productList", JSON.stringify(productList));
-	  console.log(productList);
+      localStorage.setItem("productList", JSON.stringify(productList));
+      console.log(productList);
       if (productList && productList.length > 0) {
         // If productList is not empty, populate the table with products
         populateTable(productList);
@@ -427,7 +427,7 @@
           "<tr>" +
           "<td class='product-thumbnail'><img src='" +
           product.img +
-          "' alt='Image' class='img-fluid'></td>" +
+          "' alt='Image' class='img-fluid' style='width: 100px; height: 100px; object-fit: scale-down;'></td>" +
           "<td class='product-name'><h2 class='h5 text-black'>" +
           product.name +
           "</h2></td>" +
