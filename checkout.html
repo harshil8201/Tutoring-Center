@@ -130,9 +130,6 @@
       }
       /* Social Login Form */
 
-      .social_login {
-      }
-
       .social_login .social_box {
         display: block;
         clear: both;
@@ -279,7 +276,9 @@
       arial-label="Furni navigation bar"
     >
       <div class="container">
-        <a class="navbar-brand" href="index.html">ProgLearn Hub<span>.</span></a>
+        <a class="navbar-brand" href="index.html"
+          >ProgLearn Hub<span>.</span></a
+        >
 
         <button
           class="navbar-toggler"
@@ -303,12 +302,12 @@
             <li><a class="nav-link" href="services.html">Services</a></li>
             <li><a class="nav-link" href="blog.html">Blog</a></li>
             <li><a class="nav-link" href="contact.html">Contact us</a></li>
+            <li><a class="nav-link" href="orders.html">Orders</a></li>
+            <li><a class="nav-link" href="login.html">Login</a></li>
           </ul>
 
           <ul class="custom-navbar-cta navbar-nav mb-2 mb-md-0 ms-5">
-            <li>
-              <a class="nav-link" href="#"><img src="images/user.svg" /></a>
-            </li>
+            
             <li>
               <a class="nav-link" href="cart.html"
                 ><img src="images/cart.svg"
@@ -327,10 +326,10 @@
           <div class="col-lg-5">
             <div class="intro-excerpt">
               <h1>Checkout</h1>
-              <div id="welcome-message" style="display: none;">
+              <div id="welcome-message" style="display: none">
                 <h1>Welcome, <span id="user-username"></span>!</h1>
                 <!-- <button id="logout-btn" class="btn btn-dark">Logout</button> -->
-            </div>
+              </div>
             </div>
           </div>
           <div class="col-lg-7"></div>
@@ -341,120 +340,6 @@
 
     <div class="untree_co-section">
       <div class="container">
-        <div class="row mb-5">
-          <div class="col-md-12">
-            <div class="border p-4 rounded" role="alert">
-              Returning customer?
-              <div class="container">
-                <button id="modal_trigger" href="#modal" class="btn btn-black">
-                  Login or register
-                </button>
-                <div id="modal" class="popupContainer" style="display: none">
-                  <header class="popupHeader">
-                    <span class="header_title">Login</span>
-                    <span class="modal_close"><i class="fa fa-times"></i></span>
-                  </header>
-
-                  <section class="popupBody">
-                    <!-- Social Login -->
-                    <div class="social_login">
-                      <div class="action_btns">
-                        <div class="one_half">
-                          <a href="#" id="login_form" class="btn">Login</a>
-                        </div>
-                        <div class="one_half last">
-                          <a href="#" id="register_form" class="btn">Sign up</a>
-                        </div>
-                      </div>
-                    </div>
-
-                    <!-- Login Form -->
-                    <div class="user_login">
-                      <form id="loginForm">
-                        <label>Email</label>
-                        <input
-                          type="email"
-                          id="login_useremail"
-                          name="login_useremail"
-                        />
-                        <br />
-
-                        <label>Password</label>
-                        <input
-                          type="password"
-                          id="login_password"
-                          name="login_password"
-                        />
-                        <br />
-
-                        <div class="action_btns">
-                          <div class="one_half">
-                            <a href="#" class="btn back_btn"
-                              ><i class="fa fa-angle-double-left"></i> Back</a
-                            >
-                          </div>
-                          <div class="one_half last">
-                            <button
-                              type="submit"
-                              class="btn btn_red"
-                              id="login_btn"
-                            >
-                              Login
-                            </button>
-                          </div>
-                        </div>
-                      </form>
-
-                      <!-- <a href="#" class="forgot_password">Forgot password?</a> -->
-                    </div>
-
-                    <!-- Registration Form -->
-                    <div class="user_register" style="display: none">
-                      <form id="registrationForm">
-
-                        <label>Username</label>
-                        <input type="text" id="userName" name="userName" />
-                        <br />
-
-                        <label>Email Address</label>
-                        <input type="email" id="email" name="email" />
-                        <br />
-
-                        <label>Password</label>
-                        <input type="password" id="password" name="password" />
-                        <br />
-
-                        <div class="checkbox">
-                          <input id="send_updates" type="checkbox" />
-                          <label for="send_updates"
-                            >Send me occasional email updates</label
-                          >
-                        </div>
-
-                        <div class="action_btns">
-                          <div class="one_half">
-                            <a href="#" class="btn back_btn"
-                              ><i class="fa fa-angle-double-left"></i> Back</a
-                            >
-                          </div>
-                          <div class="one_half last">
-                            <button
-                              type="submit"
-                              id="user_register_ID"
-                              class="btn"
-                            >
-                              Register
-                            </button>
-                          </div>
-                        </div>
-                      </form>
-                    </div>
-                  </section>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
         <div class="row">
           <div class="col-md-6 mb-5 mb-md-0">
             <h2 class="h3 mb-3 text-black">Billing Details</h2>
@@ -914,7 +799,7 @@
                   <div class="form-group">
                     <button
                       class="btn btn-black btn-lg py-3 btn-block"
-                      onclick="window.location='thankyou.html'"
+                      id="placeOrder"
                     >
                       Place Order
                     </button>
@@ -932,7 +817,12 @@
     <footer class="footer-section">
       <div class="container relative">
         <div class="sofa-img">
-          <img src="images/pic1.png" alt="Image" class="img-fluid" style="border-radius: 15%;"/>
+          <img
+            src="images/pic1.png"
+            alt="Image"
+            class="img-fluid"
+            style="border-radius: 15%"
+          />
         </div>
 
         <div class="row">
@@ -1075,69 +965,126 @@
       crossorigin="anonymous"
     ></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- Place Order button logic -->
     <script>
-      $(document).ready(function() {
+      document
+        .getElementById("placeOrder")
+        .addEventListener("click", function () {
+          // Get the product list from localStorage
+          const productList =
+            JSON.parse(localStorage.getItem("productList")) || [];
+
+          // Check if the product list is not empty
+          if (productList.length > 0) {
+            // Get the logged-in user's email from localStorage
+            const email = localStorage.getItem("userEmail"); // Make sure 'userEmail' is stored during login
+
+            // Prepare the course IDs (array of course IDs)
+            const courseIds = productList.map((course) => course.id); // Assuming each course has an 'id'
+
+            // Send a POST request to the backend to update the cart
+            fetch("http://localhost:5001/api/courses/add-to-cart", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                email: email,
+                courses: courseIds,
+              }),
+            })
+              .then((response) => response.json())
+              .then((result) => {
+                if (result.message === "Courses added to cart successfully") {
+                  alert("Courses successfully added to your cart!");
+                  localStorage.removeItem("productList"); // Clear the cart in localStorage
+                  window.location = "checkout.html"; // Redirect to checkout
+                } else {
+                  alert(result.message || "Failed to update cart.");
+                }
+              })
+              .catch((error) => {
+                console.error("Error updating cart:", error);
+                alert("An error occurred while updating your cart.");
+              });
+          } else {
+            alert("Your cart is empty!");
+          }
+        });
+    </script>
+
+    <script>
+      $(document).ready(function () {
         // Function to retrieve the product list from local storage
         function getProductListFromLocalStorage() {
-            var productListJSON = localStorage.getItem("productList");
-            return productListJSON ? JSON.parse(productListJSON) : [];
+          var productListJSON = localStorage.getItem("productList");
+          return productListJSON ? JSON.parse(productListJSON) : [];
         }
-    
+
         // Function to populate the order table with product information
         function populateOrderTable() {
-            var orderTableBody = $(".site-block-order-table tbody");
-            var productList = getProductListFromLocalStorage();
-    
-            // Clear existing rows from the table body
-            orderTableBody.empty();
-    
-            // Iterate over each product in the productList array
-            productList.forEach(function(product) {
-                // Construct HTML for the table row representing the product
-                var productHTML =
-                    "<tr>" +
-                    "<td>" + product.name + "</td>" +
-                    "<td>$" + product.price.toFixed(2) + "</td>" +
-                    "</tr>";
-    
-                // Append the product HTML to the table body
-                orderTableBody.append(productHTML);
-            });
-    
-            // Calculate subtotal, tax, and order total
-            var subtotal = productList.reduce(function(acc, product) {
-                return acc + product.price;
-            }, 0);
-            var tax = subtotal * 0.13; // 13% tax
-            var orderTotal = subtotal + tax;
-    
-            // Append subtotal, tax, and order total rows to the table body
-            orderTableBody.append(
-                "<tr>" +
-                "<td class='text-black font-weight-bold'><strong>Cart Subtotal</strong></td>" +
-                "<td class='text-black'>$" + subtotal.toFixed(2) + "</td>" +
-                "</tr>"
-            );
-            orderTableBody.append(
-                "<tr>" +
-                "<td class='text-black font-weight-bold'><strong>Tax (13%)</strong></td>" +
-                "<td class='text-black'>$" + tax.toFixed(2) + "</td>" +
-                "</tr>"
-            );
-            orderTableBody.append(
-                "<tr>" +
-                "<td class='text-black font-weight-bold'><strong>Order Total</strong></td>" +
-                "<td class='text-black font-weight-bold'><strong>$" + orderTotal.toFixed(2) + "</strong></td>" +
-                "</tr>"
-            );
+          var orderTableBody = $(".site-block-order-table tbody");
+          var productList = getProductListFromLocalStorage();
+
+          // Clear existing rows from the table body
+          orderTableBody.empty();
+
+          // Iterate over each product in the productList array
+          productList.forEach(function (product) {
+            // Construct HTML for the table row representing the product
+            var productHTML =
+              "<tr>" +
+              "<td>" +
+              product.name +
+              "</td>" +
+              "<td>$" +
+              product.price.toFixed(2) +
+              "</td>" +
+              "</tr>";
+
+            // Append the product HTML to the table body
+            orderTableBody.append(productHTML);
+          });
+
+          // Calculate subtotal, tax, and order total
+          var subtotal = productList.reduce(function (acc, product) {
+            return acc + product.price;
+          }, 0);
+          var tax = subtotal * 0.13; // 13% tax
+          var orderTotal = subtotal + tax;
+
+          // Append subtotal, tax, and order total rows to the table body
+          orderTableBody.append(
+            "<tr>" +
+              "<td class='text-black font-weight-bold'><strong>Cart Subtotal</strong></td>" +
+              "<td class='text-black'>$" +
+              subtotal.toFixed(2) +
+              "</td>" +
+              "</tr>"
+          );
+          orderTableBody.append(
+            "<tr>" +
+              "<td class='text-black font-weight-bold'><strong>Tax (13%)</strong></td>" +
+              "<td class='text-black'>$" +
+              tax.toFixed(2) +
+              "</td>" +
+              "</tr>"
+          );
+          orderTableBody.append(
+            "<tr>" +
+              "<td class='text-black font-weight-bold'><strong>Order Total</strong></td>" +
+              "<td class='text-black font-weight-bold'><strong>$" +
+              orderTotal.toFixed(2) +
+              "</strong></td>" +
+              "</tr>"
+          );
         }
-    
+
         // Call the function to populate the order table
         populateOrderTable();
-    });
-    
-    
-      
+      });
+
       $(document).ready(function () {
         $("#modal_trigger").click(function () {
           $("#modal").fadeIn(300);
@@ -1189,7 +1136,6 @@
             login_password: {
               required: true,
             },
-            
           },
           messages: {
             login_useremail: {
@@ -1236,11 +1182,11 @@
           var userUsername = document.getElementById("user-username");
           debugger;
           loginForm.style.display = "none";
-  
+
           // Display the welcome message
           welcomeMessage.style.display = "block";
           userUsername.textContent = user;
-      }
+        }
         // Registration form validation
         $("#registrationForm").validate({
           rules: {
@@ -1252,8 +1198,8 @@
               required: true,
             },
             userName: {
-              required:true,
-            }
+              required: true,
+            },
           },
           messages: {
             email: {
@@ -1263,9 +1209,9 @@
             password: {
               required: "Please enter a password",
             },
-            userName:{
+            userName: {
               required: "Please enter a UserName",
-            }
+            },
           },
           submitHandler: function (form) {
             var email = $("#email").val();
@@ -1281,7 +1227,11 @@
             }
 
             // Store registration details in local storage
-            var userDetails = { email: email, password: password,  userName: userName};
+            var userDetails = {
+              email: email,
+              password: password,
+              userName: userName,
+            };
             localStorage.setItem(email, JSON.stringify(userDetails));
 
             // Handle registration form submission (e.g., redirect)

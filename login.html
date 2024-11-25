@@ -62,12 +62,13 @@
             <li><a class="nav-link" href="blog.html">Blog</a></li>
             <li><a class="nav-link" href="contact.html">Contact us</a></li>
             <li><a class="nav-link" href="orders.html">Orders</a></li>
-            <li><a class="nav-link" href="login.html">Login</a></li>
+            <li class="nav-item active">
+              <a class="nav-link" href="login.html">Login</a>
+            </li>
           </ul>
 
           <ul class="custom-navbar-cta navbar-nav mb-2 mb-md-0 ms-5">
-            
-            <li class="active">
+            <li>
               <a class="nav-link" href="cart.html"
                 ><img src="images/cart.svg"
               /></a>
@@ -84,7 +85,7 @@
         <div class="row justify-content-between">
           <div class="col-lg-5">
             <div class="intro-excerpt">
-              <h1>Cart</h1>
+              <h1>Login</h1>
               <p class="mb-4">
                 Explore ProgLearn's diverse array of courses, meticulously
                 crafted to cater to every learner's needs and interests. From
@@ -101,7 +102,7 @@
           <div class="col-lg-7">
             <div class="hero-img-wrap">
               <img
-                src="https://cdni.iconscout.com/illustration/premium/thumb/mobile-shopping-8770634-7139078.png"
+                src="https://cdni.iconscout.com/illustration/premium/thumb/login-illustration-download-in-svg-png-gif-file-formats--select-an-account-join-the-forum-password-digital-marketing-pack-business-illustrations-8333958.png?f=webp"
                 class="img-fluid"
                 style="height: 550px; width: 550px; object-fit: scale-down"
               />
@@ -112,101 +113,9 @@
     </div>
     <!-- End Hero Section -->
 
-    <div class="untree_co-section before-footer-section">
-      <div class="container">
-        <div class="row mb-5">
-          <form class="col-md-12" method="post">
-            <div class="site-blocks-table">
-              <table class="table">
-                <thead>
-                  <tr>
-                    <th class="product-thumbnail">Image</th>
-                    <th class="product-name">Product</th>
-                    <th class="product-price">Price</th>
-                    <th class="product-remove">Remove</th>
-                  </tr>
-                </thead>
-                <tbody id="cart-items">
-                  <!-- Table rows will be dynamically added here -->
-                </tbody>
-              </table>
-            </div>
-          </form>
-        </div>
-
-        <div class="row">
-          <div class="col-md-6">
-            <div class="row mb-5"></div>
-            <div class="row">
-              <div class="col-md-12">
-                <label class="text-black h4" for="coupon">Coupon</label>
-                <p>Enter your coupon code if you have one.</p>
-              </div>
-              <div class="col-md-8 mb-3 mb-md-0">
-                <input
-                  type="text"
-                  class="form-control py-3"
-                  id="coupon"
-                  placeholder="Coupon Code"
-                />
-              </div>
-              <div class="col-md-4">
-                <button class="btn btn-black">Apply Coupon</button>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6 pl-5">
-            <div class="row justify-content-end">
-              <div class="col-md-7">
-                <div class="row">
-                  <div class="col-md-12 text-right border-bottom mb-5">
-                    <h3 class="text-black h4 text-uppercase">Cart Totals</h3>
-                  </div>
-                </div>
-                <div class="row mb-3">
-                  <div class="col-md-6">
-                    <span class="text-black">Subtotal</span>
-                  </div>
-                  <div class="col-md-6 text-right">
-                    <strong class="text-black subtotal">$0.00</strong>
-                    <!-- Placeholder for subtotal -->
-                  </div>
-                </div>
-                <div class="row mb-3">
-                  <div class="col-md-6">
-                    <span class="text-black">Tax (13%)</span>
-                  </div>
-                  <div class="col-md-6 text-right">
-                    <strong class="text-black tax">$0.00</strong>
-                    <!-- Placeholder for tax amount -->
-                  </div>
-                </div>
-                <div class="row mb-5">
-                  <div class="col-md-6">
-                    <span class="text-black">Total</span>
-                  </div>
-                  <div class="col-md-6 text-right">
-                    <strong class="text-black total">$0.00</strong>
-                    <!-- Placeholder for total -->
-                  </div>
-                </div>
-
-                <div class="row">
-                  <div class="col-md-12">
-                    <button
-                      class="btn btn-black btn-lg py-3 btn-block"
-                      onclick="window.location='checkout.html'"
-                    >
-                      Proceed To Checkout
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+    <!-- Login Form -->
+    <!-- HTML Structure for display login or user email -->
+    <div id="loginOrRegister"></div>
 
     <!-- Start Footer Section -->
     <footer class="footer-section">
@@ -355,6 +264,244 @@
     <script src="js/tiny-slider.js"></script>
     <!--<script src="js/custom.js"></script>-->
   </body>
+
+  <!-- JavaScript -->
+  <script>
+    const appDiv = document.getElementById("loginOrRegister");
+
+    // Function to render the login form
+    function renderLoginForm() {
+      appDiv.innerHTML = `
+      <div class="untree_co-section">
+        <div class="container">
+          <div class="row justify-content-center">
+            <div class="col-md-6 col-lg-6 pb-4">
+              <div class="block">
+                <h3 class="text-center mb-4">Login or Register</h3>
+                <form id="loginForm">
+                  <div class="form-group mb-3">
+                    <label class="text-black" for="email">Email Address</label>
+                    <input
+                      type="email"
+                      class="form-control"
+                      id="email"
+                      name="email"
+                      placeholder="Enter your email"
+                      required
+                    />
+                    <div class="invalid-feedback">
+                      Please enter a valid email address.
+                    </div>
+                  </div>
+                  <div class="form-group mb-3">
+                    <label class="text-black" for="password">Password</label>
+                    <input
+                      type="password"
+                      class="form-control"
+                      id="password"
+                      name="password"
+                      placeholder="Enter your password"
+                      minlength="6"
+                      required
+                    />
+                    <div class="invalid-feedback">
+                      Password must be at least 6 characters.
+                    </div>
+                  </div>
+                  <div class="form-group text-center">
+                    <button type="submit" class="btn btn-primary w-100">
+                      Login
+                    </button>
+                  </div>
+                  <div class="text-center mt-3">
+                    <button type="button" class="btn btn-link" onclick="renderRegisterForm()">
+                      Don't have an account? Register
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+
+      // Attach event listener for login form submission
+      document
+        .getElementById("loginForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+
+          const email = document.getElementById("email").value;
+          const password = document.getElementById("password").value;
+
+          // Call login API
+          loginUser(email, password);
+        });
+    }
+
+    // Function to render the register form
+    function renderRegisterForm() {
+      appDiv.innerHTML = `
+      <div class="untree_co-section">
+        <div class="container">
+          <div class="row justify-content-center">
+            <div class="col-md-6 col-lg-6 pb-4">
+              <div class="block">
+                <h3 class="text-center mb-4">Register</h3>
+                <form id="registerForm">
+                  <div class="form-group mb-3">
+                    <label class="text-black" for="name">Full Name</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="name"
+                      name="name"
+                      placeholder="Enter your full name"
+                      required
+                    />
+                  </div>
+                  <div class="form-group mb-3">
+                    <label class="text-black" for="email">Email Address</label>
+                    <input
+                      type="email"
+                      class="form-control"
+                      id="email"
+                      name="email"
+                      placeholder="Enter your email"
+                      required
+                    />
+                  </div>
+                  <div class="form-group mb-3">
+                    <label class="text-black" for="password">Password</label>
+                    <input
+                      type="password"
+                      class="form-control"
+                      id="password"
+                      name="password"
+                      placeholder="Enter your password"
+                      minlength="6"
+                      required
+                    />
+                    <div class="invalid-feedback">
+                      Password must be at least 6 characters.
+                    </div>
+                  </div>
+                  <div class="form-group text-center">
+                    <button type="submit" class="btn btn-primary w-100">
+                      Register
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+
+      // Attach event listener for registration form submission
+      document
+        .getElementById("registerForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+
+          const name = document.getElementById("name").value;
+          const email = document.getElementById("email").value;
+          const password = document.getElementById("password").value;
+
+          // Call register API
+          registerUser(name, email, password);
+        });
+    }
+
+    // Function to handle login API call
+    function loginUser(email, password) {
+      fetch("http://localhost:5001/api/user/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password }),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          if (data.token) {
+            // Save the token and name to localStorage
+            localStorage.setItem("userToken", data.token);
+            localStorage.setItem("userEmail", email);
+            localStorage.setItem("userName", data.user.name); // Save the user's name
+            renderLoggedInView(data.user.name);
+          } else {
+            alert(data.message || "Login failed");
+          }
+        })
+        .catch((error) => {
+          console.error("Error during login:", error);
+          alert("Login failed, please try again.");
+        });
+    }
+
+    // Function to handle register API call
+    function registerUser(name, email, password) {
+      fetch("http://localhost:5001/api/user/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ name, email, password }),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          if (data.message === "User registered successfully") {
+            // Save the name and token to localStorage directly after successful registration
+            localStorage.setItem("userName", name); // Save the name
+            localStorage.setItem("userEmail", email); // Save the email
+            localStorage.setItem("userToken", data.token); // Save the token
+
+            // Show the logged-in view with the name and logout button
+            renderLoggedInView(name);
+          } else {
+            alert(data.message || "Registration failed");
+          }
+        })
+        .catch((error) => {
+          console.error("Error during registration:", error);
+          alert("Registration failed, please try again.");
+        });
+    }
+
+    // Function to render the logged-in view with name and logout button
+    function renderLoggedInView(name) {
+      appDiv.innerHTML = `
+      <div class="untree_co-section">
+        <div class="container text-center">
+          <h3>Welcome, ${name}</h3>
+          <button id="logoutButton" class="btn btn-danger mt-3">
+            Logout
+          </button>
+        </div>
+      </div>
+    `;
+
+      // Attach event listener for logout button
+      document
+        .getElementById("logoutButton")
+        .addEventListener("click", function () {
+          localStorage.removeItem("userName");
+          localStorage.removeItem("userToken");
+          renderLoginForm(); // Re-render login form after logout
+        });
+    }
+
+    // Initial Render
+    const storedName = localStorage.getItem("userName");
+    if (storedName) {
+      renderLoggedInView(storedName);
+    } else {
+      renderLoginForm();
+    }
+  </script>
 
   <script>
     $(document).ready(function () {
